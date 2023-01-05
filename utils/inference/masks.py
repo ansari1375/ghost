@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-
+from .erode import erode as erode_
 
 def expand_eyebrows(lmrks, eyebrows_expand_mod=1.0):
 
@@ -87,7 +87,8 @@ def face_mask_static(image: np.ndarray, landmarks: np.ndarray, landmarks_tgt: np
 
 def erode_and_blur(mask_input, erode, sigmaX, sigmaY, fade_to_border = True):
     mask = np.copy(mask_input)
-    
+    if erode_ is not None:
+        erode = erode_*1
     if erode > 0:
         kernel = np.ones((erode, erode), 'uint8')
         mask = cv2.erode(mask, kernel, iterations=1)
