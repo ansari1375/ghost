@@ -89,6 +89,9 @@ def erode_and_blur(mask_input, erode, sigmaX, sigmaY, fade_to_border = True):
     mask = np.copy(mask_input)
     if erode_ is not None:
         erode = erode_*1
+    print('-----------------')
+    print(erode)
+    print('-----------------')
     if erode > 0:
         kernel = np.ones((erode, erode), 'uint8')
         mask = cv2.erode(mask, kernel, iterations=1)
